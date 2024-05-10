@@ -1,13 +1,15 @@
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Briefcase,
   HomeIcon,
-  Link,
   MessagesSquareIcon,
   SearchIcon,
   UserIcon,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import { Button } from "./ui/button";
 
 function Header() {
   return (
@@ -31,7 +33,7 @@ function Header() {
         </form>
       </div>
 
-      <div>
+      <div className="flex items-center space-x-4 px-6">
         <Link href="/" className="icon">
           <HomeIcon className="m-5" />
           <p>Home</p>
@@ -39,18 +41,28 @@ function Header() {
 
         <Link href="" className="icon hidden md:flex">
           <UserIcon className="m-5" />
-          <p>Home</p>
+          <p>Network</p>
         </Link>
 
         <Link href="" className="icon hidden md:flex">
           <Briefcase className="m-5" />
-          <p>Home</p>
+          <p>Jobs</p>
         </Link>
 
-        <Link href="" className="icon hidden md:flex">
+        <Link href="" className="icon">
           <MessagesSquareIcon className="m-5" />
           <p>Messaging</p>
         </Link>
+
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+
+        <SignedOut>
+          <Button asChild>
+            <SignInButton />
+          </Button>
+        </SignedOut>
       </div>
     </div>
   );
